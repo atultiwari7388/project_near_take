@@ -7,12 +7,11 @@ import 'package:project_one/constants/images.const.dart';
 import 'package:project_one/constants/strings.const.dart';
 import 'package:project_one/constants/styles.const.dart';
 import 'package:project_one/views/home/components/category_details_screen.dart';
-import 'package:project_one/views/home/components/cuisines_details_screen.dart';
 import 'package:project_one/views/home/components/restaurant_detail_screen.views.dart';
 import 'package:project_one/views/home/components/view_all_category.dart';
 import '../../constants/app_colors.constants.dart';
 import '../../widgets/global_var.widgets.dart';
-import 'components/view_all_cuisines_section.dart';
+import '../cart/cart_screen.views.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -100,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               expandedHeight: AppDimensions.getHeight(100),
               backgroundColor: kWhiteColor,
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(Icons.location_on, color: kBlackColor),
                   Text("Sco 20,Old Kalka Rd, Dhakoli ,Haryana",
@@ -305,258 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (_, index) {
                           return TrendingFoodOfferCard(
                             onTap: () {
-                              Get.bottomSheet(
-                                persistent: false,
-                                isScrollControlled: true,
-                                ignoreSafeArea: true,
-                                Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: const BoxDecoration(
-                                    color: kWhiteColor,
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      topLeft: Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      //tap to close
-                                      InkWell(
-                                        onTap: () => Get.back(),
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: CircleAvatar(
-                                            radius: 25,
-                                            backgroundColor: kPrimaryColor,
-                                            child: Text(
-                                              "X",
-                                              style: AppStyles.subtitleText
-                                                  .copyWith(color: kWhiteColor),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      // image section
-                                      Container(
-                                        margin: EdgeInsets.only(
-                                            left: AppDimensions.getHeight(8)),
-                                        padding: EdgeInsets.only(
-                                            left: AppDimensions.getWidth(8)),
-                                        // width: AppDimensions.getWidth(280),
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: kWhiteColor,
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        child: Row(
-                                          children: [
-                                            //image section
-                                            Stack(
-                                              children: [
-                                                Container(
-                                                  width: AppDimensions.getWidth(
-                                                      100),
-                                                  height:
-                                                      AppDimensions.getHeight(
-                                                          100),
-                                                  decoration: BoxDecoration(
-                                                      // color: Colors.green,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              7),
-                                                      image:
-                                                          const DecorationImage(
-                                                              image: AssetImage(
-                                                                  pizzaImg),
-                                                              fit: BoxFit
-                                                                  .cover)),
-                                                ),
-                                                Positioned(
-                                                  top: AppDimensions.getHeight(
-                                                      15),
-                                                  child: Container(
-                                                    height:
-                                                        AppDimensions.getHeight(
-                                                            20),
-                                                    width:
-                                                        AppDimensions.getWidth(
-                                                            60),
-                                                    decoration: BoxDecoration(
-                                                      color: kPrimaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        topRight:
-                                                            Radius.circular(
-                                                                AppDimensions
-                                                                    .getHeight(
-                                                                        10)),
-                                                        bottomRight:
-                                                            Radius.circular(
-                                                                AppDimensions
-                                                                    .getHeight(
-                                                                        10)),
-                                                      ),
-                                                    ),
-                                                    child: Center(
-                                                        child: Text("15% Off",
-                                                            style: AppStyles
-                                                                .subtitleText
-                                                                .copyWith(
-                                                                    color:
-                                                                        kWhiteColor,
-                                                                    fontSize:
-                                                                        13))),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            //text Section
-                                            Container(
-                                              height:
-                                                  AppDimensions.getHeight(120),
-                                              padding: const EdgeInsets.all(3),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  const ReusableTextWidgetRes(
-                                                      text: "Pizza",
-                                                      color: kBlackColor,
-                                                      fontSize: 15),
-                                                  SizedBox(
-                                                      height: AppDimensions
-                                                          .getHeight(5)),
-                                                  const ReusableTextWidgetRes(
-                                                      text: "Hungry puppets",
-                                                      color: kDarkGreyColor,
-                                                      fontSize: 15),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: AppDimensions
-                                                            .getWidth(7)),
-                                                    child: Row(
-                                                      children: [
-                                                        Row(
-                                                          children: List.generate(
-                                                              5,
-                                                              (index) => const Icon(
-                                                                  Icons.star,
-                                                                  color:
-                                                                      kPrimaryColor,
-                                                                  size: 18)),
-                                                        ),
-                                                        SizedBox(
-                                                            width: AppDimensions
-                                                                .getWidth(3)),
-                                                        const Text("(12)"),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                      height: AppDimensions
-                                                          .getHeight(5)),
-                                                  //price section
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8.0),
-                                                    child: Row(
-                                                      children: const [
-                                                        FaIcon(
-                                                            FontAwesomeIcons
-                                                                .indianRupeeSign,
-                                                            size: 12),
-                                                        Text("120"),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  //price drop section
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8.0),
-                                                    child: Row(
-                                                      children: [
-                                                        const FaIcon(
-                                                          FontAwesomeIcons
-                                                              .indianRupeeSign,
-                                                          size: 12,
-                                                          color: kGreyColor,
-                                                        ),
-                                                        Text("120",
-                                                            style: AppStyles
-                                                                .subtitleText
-                                                                .copyWith(
-                                                                    color:
-                                                                        kGreyColor,
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .lineThrough)),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //details section
-                                      Flexible(child: Container()),
-                                      //bottom section
-                                      Row(
-                                        children: [
-                                          Container(
-                                            height: 50,
-                                            width: 60,
-                                            decoration: BoxDecoration(
-                                              color: kWhiteColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              border: Border.all(
-                                                  color: kPrimaryColor),
-                                            ),
-                                            child: const Icon(
-                                                Icons.shopping_cart,
-                                                color: kPrimaryColor),
-                                          ),
-                                          SizedBox(
-                                              width:
-                                                  AppDimensions.getWidth(10)),
-                                          Expanded(
-                                            child: ElevatedButton(
-                                              onPressed: () {},
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: kPrimaryColor,
-                                                elevation: 1,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(12.0),
-                                                child: Text(
-                                                  "Order now",
-                                                  style: AppStyles.subtitleText
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: kWhiteColor,
-                                                          fontSize: 18),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                              buildAddToCartBottomSheet();
                             },
                           );
                         },
@@ -564,41 +312,42 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: AppDimensions.getHeight(15)),
 //==================== Cuisines  ===============================
-                    ReusableRowWidget(
-                        firstText: cuisines,
-                        secondText: "View All",
-                        onTap: () =>
-                            Get.to(() => const ViewAllCuisinesSection())),
-                    SizedBox(height: AppDimensions.getHeight(5)),
-                    SizedBox(
-                      height: AppDimensions.getHeight(150),
-                      child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: Globalvariable.categoryItems.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            mainAxisSpacing: 1,
-                            childAspectRatio: 3.5 / 5,
-                          ),
-                          itemBuilder: (ctx, index) {
-                            final categoryData =
-                                Globalvariable.categoryItems[index];
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                  right: AppDimensions.getWidth(6)),
-                              child: CategoryCard(
-                                icon: categoryData["image"]!,
-                                title: categoryData["title"]!,
-                                onTap: () => Get.to(() =>
-                                    CuisinesFoodDetailsScreen(
-                                        appBarTitle: categoryData["title"]!,
-                                        resImage: categoryData["image"]!)),
-                              ),
-                            );
-                          }),
-                    ),
+                    // ReusableRowWidget(
+                    //     firstText: cuisines,
+                    //     secondText: "View All",
+                    //     onTap: () =>
+                    //         Get.to(() => const ViewAllCuisinesSection())),
+                    // SizedBox(height: AppDimensions.getHeight(5)),
+                    // SizedBox(
+                    //   height: AppDimensions.getHeight(150),
+                    //   child: GridView.builder(
+                    //       shrinkWrap: true,
+                    //       physics: const NeverScrollableScrollPhysics(),
+                    //       itemCount: Globalvariable.categoryItems.length,
+                    //       gridDelegate:
+                    //           const SliverGridDelegateWithFixedCrossAxisCount(
+                    //         crossAxisCount: 4,
+                    //         mainAxisSpacing: 1,
+                    //         childAspectRatio: 3.5 / 5,
+                    //       ),
+                    //       itemBuilder: (ctx, index) {
+                    //         final categoryData =
+                    //             Globalvariable.categoryItems[index];
+                    //         return Padding(
+                    //           padding: EdgeInsets.only(
+                    //               right: AppDimensions.getWidth(6)),
+                    //           child: CategoryCard(
+                    //             icon: categoryData["image"]!,
+                    //             title: categoryData["title"]!,
+                    //             onTap: () => Get.to(() =>
+                    //                 CuisinesFoodDetailsScreen(
+                    //                     appBarTitle: categoryData["title"]!,
+                    //                     resImage: categoryData["image"]!)),
+                    //           ),
+                    //         );
+                    //       }),
+                    // ),
+
 //=================== Popular Food Near By  ======================
                     ReusableRowWidget(
                         firstText: popularFoodNear,
@@ -1201,6 +950,275 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> buildAddToCartBottomSheet() {
+    return Get.bottomSheet(
+      persistent: false,
+      isScrollControlled: true,
+      ignoreSafeArea: true,
+      Container(
+        padding: const EdgeInsets.all(8),
+        decoration: const BoxDecoration(
+          color: kWhiteColor,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //tap to close
+            InkWell(
+              onTap: () => Get.back(),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: kPrimaryColor,
+                  child: Text(
+                    "X",
+                    style: AppStyles.subtitleText.copyWith(color: kWhiteColor),
+                  ),
+                ),
+              ),
+            ),
+            // image section
+            Container(
+              margin: EdgeInsets.only(left: AppDimensions.getHeight(8)),
+              padding: EdgeInsets.only(left: AppDimensions.getWidth(8)),
+              // width: AppDimensions.getWidth(280),
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                  color: kWhiteColor, borderRadius: BorderRadius.circular(8)),
+              child: Row(
+                children: [
+                  //image section
+                  Stack(
+                    children: [
+                      Container(
+                        width: AppDimensions.getWidth(100),
+                        height: AppDimensions.getHeight(100),
+                        decoration: BoxDecoration(
+                            // color: Colors.green,
+                            borderRadius: BorderRadius.circular(7),
+                            image: const DecorationImage(
+                                image: AssetImage(pizzaImg),
+                                fit: BoxFit.cover)),
+                      ),
+                      Positioned(
+                        top: AppDimensions.getHeight(15),
+                        child: Container(
+                          height: AppDimensions.getHeight(20),
+                          width: AppDimensions.getWidth(60),
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.only(
+                              topRight:
+                                  Radius.circular(AppDimensions.getHeight(10)),
+                              bottomRight:
+                                  Radius.circular(AppDimensions.getHeight(10)),
+                            ),
+                          ),
+                          child: Center(
+                              child: Text("15% Off",
+                                  style: AppStyles.subtitleText.copyWith(
+                                      color: kWhiteColor, fontSize: 13))),
+                        ),
+                      ),
+                    ],
+                  ),
+                  //text Section
+                  Container(
+                    height: AppDimensions.getHeight(120),
+                    padding: const EdgeInsets.all(3),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const ReusableTextWidgetRes(
+                            text: "Pizza", color: kBlackColor, fontSize: 15),
+                        SizedBox(height: AppDimensions.getHeight(5)),
+                        const ReusableTextWidgetRes(
+                            text: "Hungry puppets",
+                            color: kDarkGreyColor,
+                            fontSize: 15),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(left: AppDimensions.getWidth(7)),
+                          child: Row(
+                            children: [
+                              Row(
+                                children: List.generate(
+                                    5,
+                                    (index) => const Icon(Icons.star,
+                                        color: kPrimaryColor, size: 18)),
+                              ),
+                              SizedBox(width: AppDimensions.getWidth(3)),
+                              const Text("(12)"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: AppDimensions.getHeight(5)),
+                        //price section
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Row(
+                            children: const [
+                              FaIcon(FontAwesomeIcons.indianRupeeSign,
+                                  size: 12),
+                              Text("120"),
+                            ],
+                          ),
+                        ),
+                        //price drop section
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Row(
+                            children: [
+                              const FaIcon(
+                                FontAwesomeIcons.indianRupeeSign,
+                                size: 12,
+                                color: kGreyColor,
+                              ),
+                              Text("120",
+                                  style: AppStyles.subtitleText.copyWith(
+                                      color: kGreyColor,
+                                      decoration: TextDecoration.lineThrough)),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: AppDimensions.getHeight(20)),
+            //details section
+            Text("Description",
+                style: AppStyles.subtitleText.copyWith(
+                  color: kBlackColor,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                )),
+            SizedBox(height: AppDimensions.getHeight(10)),
+            Text(
+              "Spicy chilli crab is only mildly spicy and is often described as having a flavour that's both sweet and savoury. The crab is divine but the sauce is the star - sweet yet savoury, slightly spicy and supremely",
+              style: AppStyles.subtitleText.copyWith(fontSize: 14),
+            ),
+            SizedBox(height: AppDimensions.getHeight(10)),
+
+            //capacity section
+            Row(
+              children: [
+                Text(
+                  "Capacity",
+                  style: AppStyles.subtitleText.copyWith(
+                    color: kBlackColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "(Required)",
+                  style: AppStyles.subtitleText.copyWith(
+                    color: kPrimaryColor,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            RadioListTile(
+                title: Text("1:1 Person"),
+                value: "1:2 Person",
+                groupValue: "1 Person",
+                onChanged: (value) {}),
+            RadioListTile(
+                title: Text("1:2 Person"),
+                value: "1:2 Person",
+                groupValue: "1 Person",
+                onChanged: (value) {}),
+            RadioListTile(
+              title: Text("1:5 Person"),
+              value: "1:5 Person",
+              groupValue: "1 Person",
+              onChanged: (value) {},
+            ),
+            //Addition(optional),
+            //Quantity section
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Quantity"),
+                Row(
+                  children: [
+                    ReusableIncrementAndDecrementWidget(
+                      onTap: () {},
+                      text: "-",
+                    ),
+                    SizedBox(width: AppDimensions.getWidth(10)),
+                    Text("1"),
+                    SizedBox(width: AppDimensions.getWidth(10)),
+                    ReusableIncrementAndDecrementWidget(
+                      onTap: () {},
+                      text: "+",
+                      backgroundColor: kPrimaryColor,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            //total amount
+            SizedBox(height: AppDimensions.getHeight(20)),
+            //bottom section
+            Row(
+              children: [
+                Container(
+                  height: AppDimensions.getHeight(50),
+                  width: AppDimensions.getWidth(60),
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: kPrimaryColor),
+                  ),
+                  child: InkWell(
+                    onTap: () => Get.back(),
+                    child: const Icon(Icons.home, color: kPrimaryColor),
+                  ),
+                ),
+                SizedBox(width: AppDimensions.getWidth(10)),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () => Get.to(() => const CartScreen()),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kPrimaryColor,
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        "Order now",
+                        style: AppStyles.subtitleText.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: kWhiteColor,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ],
         ),
