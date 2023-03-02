@@ -51,13 +51,13 @@ class TextFormFieldWidget extends StatelessWidget {
               .bodyText2!
               .copyWith(height: 0, color: kPrimaryCursorColor.withOpacity(.8)),
           border: OutlineInputBorder(
-            borderSide: const BorderSide(color: kTextFieldDefaultColor),
+            borderSide: const BorderSide(color: kLightGreyColor),
             borderRadius: BorderRadius.all(
               Radius.circular(AppDimensions.getHeight(8)),
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kPrimaryCursorColor),
+            borderSide: const BorderSide(color: kLightGreyColor),
             borderRadius:
                 BorderRadius.all(Radius.circular(AppDimensions.getHeight(8))),
           ),

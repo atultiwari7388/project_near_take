@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:project_one/constants/app_colors.constants.dart';
 import 'package:project_one/constants/dimensions.const.dart';
-import 'package:project_one/views/DeliveryMan/delivery_man_sign_in_screen.dart';
-import 'package:project_one/views/RestaurantNearTake/login_screen.dart';
-import 'package:project_one/views/aboutUs/about_us_screen.dart';
-import 'package:project_one/views/cart/cart_screen.views.dart';
-import 'package:project_one/views/favorite/favorites_screen.views.dart';
-import 'package:project_one/views/home/home_screen.views.dart';
-import 'package:project_one/views/orders/orders_screen.view.dart';
-import 'package:project_one/views/profile/profile_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/add_product_restaurant.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_addons_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_bag_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_bank_info_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_categories_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_earning_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_expenses_report.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_home_screen.dart';
+import 'package:project_one/views/RestaurantNearTake/restaurant_products_screen.dart';
 import 'package:project_one/widgets/custom_text_and_icon_widget.dart';
 
-class InitialScreen extends StatefulWidget {
-  const InitialScreen({Key? key}) : super(key: key);
+import 'restaurant_profile_screen.dart';
+
+class RestaurantBottomScreen extends StatefulWidget {
+  const RestaurantBottomScreen({Key? key}) : super(key: key);
 
   @override
-  State<InitialScreen> createState() => _InitialScreenState();
+  State<RestaurantBottomScreen> createState() => _RestaurantBottomScreenState();
 }
 
-class _InitialScreenState extends State<InitialScreen> {
+class _RestaurantBottomScreenState extends State<RestaurantBottomScreen> {
   int currentTab = 0;
   // final List<Widget> screens = [
   //   const HomeScreen(),
@@ -29,7 +33,7 @@ class _InitialScreenState extends State<InitialScreen> {
   // ];
 
   final PageStorageBucket pageStorageBucket = PageStorageBucket();
-  Widget currentIndex = const HomeScreen();
+  Widget currentIndex = const RestaurantHomeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +42,12 @@ class _InitialScreenState extends State<InitialScreen> {
           backgroundColor: currentTab == 2 ? kPrimaryColor : kWhiteColor,
           onPressed: () {
             setState(() {
-              currentIndex = const CartScreen();
+              currentIndex = const RestaurantProductsScreen();
               currentTab = 2;
             });
           },
           child: Icon(
-            Icons.shopping_cart,
+            Icons.store,
             size: 30,
             color: currentTab == 2 ? kWhiteColor : kLightGreyColor,
           )),
@@ -63,7 +67,7 @@ class _InitialScreenState extends State<InitialScreen> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentIndex = const HomeScreen();
+                        currentIndex = const RestaurantHomeScreen();
                         currentTab = 0;
                       });
                     },
@@ -80,14 +84,14 @@ class _InitialScreenState extends State<InitialScreen> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentIndex = const FavoritesScreen();
+                        currentIndex = const RestaurantBagScreen();
                         currentTab = 1;
                       });
                     },
                     minWidth: AppDimensions.getWidth(50),
                     child: Center(
                       child: Icon(
-                        Icons.favorite,
+                        Icons.shopping_bag_rounded,
                         size: 30,
                         color:
                             currentTab == 1 ? kPrimaryColor : kLightGreyColor,
@@ -102,14 +106,14 @@ class _InitialScreenState extends State<InitialScreen> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentIndex = const MyOrdersScreen();
+                        currentIndex = const RestaurantEarningScreen();
                         currentTab = 3;
                       });
                     },
                     minWidth: AppDimensions.getWidth(50),
                     child: Center(
-                      child: Icon(
-                        Icons.shopping_bag,
+                      child: FaIcon(
+                        FontAwesomeIcons.indianRupeeSign,
                         size: 30,
                         color:
                             currentTab == 3 ? kPrimaryColor : kLightGreyColor,
@@ -160,7 +164,7 @@ class _InitialScreenState extends State<InitialScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () => Get.back(),
               child: const Icon(Icons.keyboard_arrow_down,
                   color: kBlackColor, size: 30),
             ),
@@ -177,90 +181,105 @@ class _InitialScreenState extends State<InitialScreen> {
                   icon: index == 0
                       ? Icons.account_circle
                       : index == 1
-                          ? Icons.maps_home_work
+                          ? Icons.assured_workload_sharp
                           : index == 2
-                              ? Icons.question_mark
+                              ? Icons.add_business_rounded
                               : index == 3
-                                  ? Icons.privacy_tip
+                                  ? Icons.add_box_outlined
                                   : index == 4
-                                      ? Icons.document_scanner_outlined
+                                      ? Icons.category_outlined
                                       : index == 5
-                                          ? Icons.money
+                                          ? Icons.discount
                                           : index == 6
-                                              ? Icons.policy
+                                              ? Icons.document_scanner_rounded
                                               : index == 7
-                                                  ? Icons.delivery_dining
+                                                  ? Icons.policy_rounded
                                                   : index == 8
-                                                      ? Icons.account_balance
+                                                      ? Icons
+                                                          .dynamic_feed_outlined
                                                       : index == 9
-                                                          ? Icons.access_time
+                                                          ? Icons.chat_sharp
                                                           : Icons.logout,
                   text: index == 0
                       ? "Profile"
                       : index == 1
-                          ? " My Address"
+                          ? "Bank Info"
                           : index == 2
-                              ? "About us"
+                              ? "Add Foods"
                               : index == 3
-                                  ? "Privacy Policy"
+                                  ? "Addons"
                                   : index == 4
-                                      ? "Terms & Conditions"
+                                      ? "Categories"
                                       : index == 5
-                                          ? "Refund Policy"
+                                          ? "Coupons"
                                           : index == 6
-                                              ? "Cancellation Policy"
+                                              ? "Expense Report"
                                               : index == 7
-                                                  ? "Shipping Policy"
+                                                  ? "Privacy Policy"
                                                   : index == 8
-                                                      ? "Join as a Delivery man"
+                                                      ? "Terms & Conditions"
                                                       : index == 9
-                                                          ? "Join as a Restaurant"
+                                                          ? "Conversations"
                                                           : "Sign in",
                   backgroudColor: index == 10 ? Colors.green : kPrimaryColor,
                   onTap: index == 0
                       ? () {
                           //profile screen
-                          Get.to(() => const ProfileScreen());
+                          Get.to(
+                            () => const RestaurantProfileScreen(),
+                          );
                         }
                       : index == 1
                           ? () {
-                              //address screen
+                              Get.to(
+                                () => const RestaurantBankInfoDetailScreen(),
+                              );
                             }
                           : index == 2
                               ? () {
-                                  Get.to(() => const AboutUsScreen());
+                                  // Add foods
+                                  Get.to(
+                                    () => const AddProductRestaurantScreen(),
+                                  );
                                 }
                               : index == 3
                                   ? () {
-                                      //privacy policy
+                                      //Add ons
+                                      Get.to(
+                                        () => const RestaurantAddOnsScreen(),
+                                      );
                                     }
                                   : index == 4
                                       ? () {
-                                          //terms and conditions
+                                          //category
+                                          Get.to(
+                                            () =>
+                                                const RestaurantCategoryScreen(),
+                                          );
                                         }
                                       : index == 5
                                           ? () {
-                                              //refund policy
+                                              //coupons
                                             }
                                           : index == 6
                                               ? () {
-                                                  //cancellation policy
+                                                  // Expense Report
+                                                  Get.to(
+                                                    () =>
+                                                        const RestaurantExpensesReport(),
+                                                  );
                                                 }
                                               : index == 7
                                                   ? () {
-                                                      //shipping policy
+                                                      //Privacy policy
                                                     }
                                                   : index == 8
                                                       ? () {
-                                                          //join as delivery man
-                                                          Get.to(() =>
-                                                              const DeliveryManSignInScreen());
+                                                          // Terms and Conditions
                                                         }
                                                       : index == 9
                                                           ? () {
-                                                              //join as restaurant
-                                                              Get.to(() =>
-                                                                  const RestaurantLoginScreen());
+                                                              // Converstations
                                                             }
                                                           : () {
                                                               //sign in or sign out

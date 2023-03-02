@@ -162,6 +162,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen>
                       ],
                     ),
                   ),
+
 //======================== Rating , Location, Delivery Time, Free delivery =======================
                   Container(
                     margin: EdgeInsets.only(

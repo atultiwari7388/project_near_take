@@ -38,12 +38,12 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Image.asset("assets/logo.png", fit: BoxFit.cover),
+      splash: Image.asset("assets/logo.png"),
       nextScreen: const PhoneVerificationScreen(),
       backgroundColor: kWhiteColor,
-      splashTransition: SplashTransition.fadeTransition,
+      splashTransition: SplashTransition.scaleTransition,
       duration: 3000,
-      splashIconSize: AppDimensions.getHeight(375),
+      splashIconSize: AppDimensions.getHeight(250),
     );
   }
 }
